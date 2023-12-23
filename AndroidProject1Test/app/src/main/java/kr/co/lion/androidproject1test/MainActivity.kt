@@ -27,7 +27,9 @@ class MainActivity : AppCompatActivity() {
     // 현재 항목을 구성하기 위해 사용한 객체가 Util.animalList의 몇번째 객체인지를 담을 리스트
     val recyclerViewIndexList = mutableListOf<Int>()
     // 현재 선택되어 있는 필터 타입
-    lateinit var filterType: FilterType
+    var filterType = FilterType.FILTER_TYPE_ALL
+    // 현재 선택되어 있는 필터 타입 - MultiChoice
+    var filterTypeMulti = booleanArrayOf(true, true, true)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +37,6 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
-        // 필터 초기 값
-        filterType = FilterType.FILTER_TYPE_ALL
 
         setLauncher()
         setToolbar()
@@ -84,7 +84,11 @@ class MainActivity : AppCompatActivity() {
                         // 필터 메뉴
                         R.id.menu_item_main_filter -> {
                             // 필터 선택을 위한 다이얼로그를 띄운다.
-                            showFilterDialog()
+                            //showFilterDialog()
+                            // 기본 다이얼로그
+                            // showFilterDialog()
+                            // MultiChoice 다이얼로그
+                            showFilterDialogMultiChoice()
                         }
                     }
 
@@ -190,12 +194,16 @@ class MainActivity : AppCompatActivity() {
                 // 현재 번째의 순서값을 담아준다.
                 showIntent.putExtra("position", position)
 
+                // 사용자가 선택한 항목을 구성하기 위해 사용한 객체가
+                // Util.animalList 리스트에 몇번째에 있는 값인지를 담아준다.
+                showIntent.putExtra("position", recyclerViewIndexList[position])
+
                 showActivityLauncher.launch(showIntent)
             }
         }
     }
 
-    // 필터 다이얼로그를 띄우는 메서드
+    // 필터 다이얼로그를 띄우는 메서드 - singleChoice
     fun showFilterDialog(){
         val dialogBuilder = MaterialAlertDialogBuilder(this@MainActivity)
         dialogBuilder.setTitle("필터 선택")
@@ -217,63 +225,113 @@ class MainActivity : AppCompatActivity() {
             activityMainBinding.recyclerViewMain.adapter?.notifyDataSetChanged()
         }
 
-//        dialogBuilder.setMultiChoiceItems(itemArray, booleanArrayOf(true, false, true, false)){ dialogInterface: DialogInterface, i: Int, b: Boolean ->
-//
-//        }
+        dialogBuilder.setNegativeButton("취소", null)
+        dialogBuilder.show()
+    }
 
-//        dialogBuilder.setSingleChoiceItems(itemArray, 0){ dialogInterface: DialogInterface, i: Int ->
-//
-//        }
+    // 필터 다이얼로그를 띄우는 메서드 - singleChoice
+    fun showFilterDialogSingle(){
+        val dialogBuilder = MaterialAlertDialogBuilder(this@MainActivity)
+        dialogBuilder.setTitle("필터 선택")
+
+        // 항목
+        val itemArray = arrayOf("전체", "사자", "호랑이", "기린")
+
+        dialogBuilder.setSingleChoiceItems(itemArray, filterType.num){ dialogInterface: DialogInterface, i: Int ->
+
+            // 리스너의 두번째 매개변수에는 사용자가 선택한 다이얼로그 항목의 순서값이 전달된다.
+            // 선택한 항목에 대한 필터 값을 설정
+            filterType = when(i){
+                0 -> FilterType.FILTER_TYPE_ALL
+                1 -> FilterType.FILTER_TYPE_LION
+                2 -> FilterType.FILTER_TYPE_TIGER
+                3 -> FilterType.FILTER_TYPE_GIAFFE
+                else -> FilterType.FILTER_TYPE_ALL
+            }
+
+            setRvList()
+            activityMainBinding.recyclerViewMain.adapter?.notifyDataSetChanged()
+        }
 
         dialogBuilder.setNegativeButton("취소", null)
         dialogBuilder.show()
     }
 
-    // 검색 필터에 따라 리스트에 데이터를 담아 주는 메소드
-    fun setRvList(){
-        recyclerViewList.clear()
-        recyclerViewIndexList.clear()
 
-        // 필터에 따라 분기
-        // 검색 필터에 따라 리스트에 데이터를 담아주는 메서드
-        fun setRecyclerViewList(){
-            // 필터에 따라 분기한다.
-            when(filterType){
-                // 전체
-                FilterType.FILTER_TYPE_ALL -> {
-                    Util.animalList.forEachIndexed { index, animal ->
-                        recyclerViewList.add(animal)
-                        recyclerViewIndexList.add(index)
-                    }
+    // 필터 다이얼로그를 띄우는 메서드 -
+    fun showFilterDialogMultiChoice(){
+        val dialogBuilder = MaterialAlertDialogBuilder(this@MainActivity)
+        dialogBuilder.setTitle("필터 선택")
+
+        // 항목
+        val itemArray = arrayOf("사자", "호랑이", "기린")
+        // 각 항목이 선택되어 있는가 ?
+        val itemCheckArray = booleanArrayOf(true, true, true)
+
+        // 두번쟤 : 체크 상태가 변경된 항목의 순서값
+        // 새번째 : 체크 상태
+        dialogBuilder.setMultiChoiceItems(itemArray, itemCheckArray){ dialogInterface: DialogInterface, i: Int, b: Boolean ->
+            // 체크가 변경도니 항목의 값을 변경
+            itemCheckArray[i] = b
+
+            dialogBuilder.apply {
+                setNegativeButton("취소", null)
+                setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
+                    // 데이터를 새로 담는다.
+                    setRvList()
+                    // 리사이클러뷰를 갱신한다.
+                    activityMainBinding.recyclerViewMain.adapter?.notifyDataSetChanged()
                 }
-                // 사자
-                FilterType.FILTER_TYPE_LION -> {
-                    // 동물 타입이 사자인 것만 담는다.
-                    Util.animalList.forEachIndexed { index, animal ->
-                        if (animal.type == AnimalType.ANIMAL_TYPE_LION){
-                            recyclerViewList.add(animal)
-                            recyclerViewIndexList.add(index)
-                        }
-                    }
-                }
-                // 호랑이
-                FilterType.FILTER_TYPE_TIGER -> // 동물 타입이 호랑이인 것만 담는다.
-                    Util.animalList.forEachIndexed { index, animal ->
-                        if (animal.type == AnimalType.ANIMAL_TYPE_TIGER){
-                            recyclerViewList.add(animal)
-                            recyclerViewIndexList.add(index)
-                        }
-                    }
-                // 기린
-                FilterType.FILTER_TYPE_GIAFFE -> {
-                    Util.animalList.forEachIndexed { index, animal ->
-                        if (animal.type == AnimalType.ANIMAL_TYPE_GIRAFFE){
-                            recyclerViewList.add(animal)
-                            recyclerViewIndexList.add(index)
-                        }
-                    }
-                }
+                show()
+            }
+
+        }
+
+
+        dialogBuilder.setNegativeButton("취소", null)
+        dialogBuilder.show()
+    }
+
+    fun setRvList(){
+        //기본 다이얼로그 용
+        setRvListBasic()
+        // 기본 다이얼로그, SingChoice 용
+
+    }
+
+    //  기본 다이얼로그용
+    // 검색 필터에 따라 리스트에 데이터를 담아 주는 메소드
+    fun setRvListBasic(){
+        clearRvList()
+
+        setRvListMulti()
+    }
+
+    // MultiChoice 다이얼로그용
+    fun setRvListMulti(){
+
+        clearRvList()
+
+        // animaList에 담긴 객체의수 만큼 반복한다.
+        Util.animalList.forEachIndexed { index, animal ->
+            // 동물 타입이 사자이고 사자가 true 라면 담아준다
+            if (animal.type == AnimalType.ANIMAL_TYPE_LION && filterTypeMulti[0]){
+                addRvItem(animal,index)
+            }else if (animal.type == AnimalType.ANIMAL_TYPE_TIGER && filterTypeMulti[1]){
+                addRvItem(animal,index)
+            }else{
+                addRvItem(animal,index)
             }
         }
+    }
+
+    fun addRvItem(animal: Animal, index: Int){
+        recyclerViewList.add(animal)
+        recyclerViewIndexList.add(index)
+    }
+
+    fun clearRvList(){
+        recyclerViewList.clear()
+        recyclerViewIndexList.clear()
     }
 }

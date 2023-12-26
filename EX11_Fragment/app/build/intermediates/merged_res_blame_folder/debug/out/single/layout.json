@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "C:\\Users\\82103\\.gradle\\daemon\\8.2\\kr.co.lion.ex11_fragment.app-mergeDebugResources-30:\\layout\\fragment_input.xml",
+        "source": "C:\\Users\\82103\\.gradle\\daemon\\8.2\\kr.co.lion.ex11_fragment.app-main-33:\\layout\\fragment_input.xml"
+    },
+    {
+        "merged": "C:\\Users\\82103\\.gradle\\daemon\\8.2\\kr.co.lion.ex11_fragment.app-mergeDebugResources-30:\\layout\\fragment_show.xml",
+        "source": "C:\\Users\\82103\\.gradle\\daemon\\8.2\\kr.co.lion.ex11_fragment.app-main-33:\\layout\\fragment_show.xml"
+    },
+    {
+        "merged": "C:\\Users\\82103\\.gradle\\daemon\\8.2\\kr.co.lion.ex11_fragment.app-mergeDebugResources-30:\\layout\\fragment_main.xml",
+        "source": "C:\\Users\\82103\\.gradle\\daemon\\8.2\\kr.co.lion.ex11_fragment.app-main-33:\\layout\\fragment_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\82103\\.gradle\\daemon\\8.2\\kr.co.lion.ex11_fragment.app-mergeDebugResources-30:\\layout\\main_row.xml",
+        "source": "C:\\Users\\82103\\.gradle\\daemon\\8.2\\kr.co.lion.ex11_fragment.app-main-33:\\layout\\main_row.xml"
+    },
+    {
+        "merged": "kr.co.lion.ex11_fragment.app-mergeDebugResources-30:/layout/main_row.xml",
+        "source": "kr.co.lion.ex11_fragment.app-main-33:/layout/main_row.xml"
+    },
+    {
+        "merged": "C:\\Users\\82103\\.gradle\\daemon\\8.2\\kr.co.lion.ex11_fragment.app-mergeDebugResources-30:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\82103\\.gradle\\daemon\\8.2\\kr.co.lion.ex11_fragment.app-main-33:\\layout\\activity_main.xml"
+    }
+]

@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "kr.co.lion.android33_fragment.app-mergeDebugResources-30:/layout/fragment_main.xml",
+        "source": "kr.co.lion.android33_fragment.app-main-33:/layout/fragment_main.xml"
+    },
+    {
+        "merged": "kr.co.lion.android33_fragment.app-mergeDebugResources-30:/layout/activity_main.xml",
+        "source": "kr.co.lion.android33_fragment.app-main-33:/layout/activity_main.xml"
+    },
+    {
+        "merged": "kr.co.lion.android33_fragment.app-mergeDebugResources-30:/layout/fragment_input.xml",
+        "source": "kr.co.lion.android33_fragment.app-main-33:/layout/fragment_input.xml"
+    }
+]

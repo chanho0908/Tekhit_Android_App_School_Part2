@@ -1,0 +1,24 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color white
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+drawable key_24px
+drawable local_shipping_24px
+drawable logout_24px
+drawable menu_24px
+id bottomAppBar
+id item1
+id item2
+id item3
+id textView
+layout activity_main
+menu main_menu
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+style Base.Theme.Android34_BottomAppBar
+style Theme.Android34_BottomAppBar
+xml backup_rules
+xml data_extraction_rules

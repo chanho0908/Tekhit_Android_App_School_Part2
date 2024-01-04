@@ -1,20 +1,11 @@
-package kr.co.lion.android_mini_project_1.view
+package kr.co.lion.androidproject1test
 
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import kr.co.lion.android_mini_project_1.R
-import kr.co.lion.android_mini_project_1.Util.AnimalType
-import kr.co.lion.android_mini_project_1.Util.Util
-import kr.co.lion.android_mini_project_1.databinding.ActivityShowBinding
-import kr.co.lion.androidproject1test.Giraffe
-import kr.co.lion.androidproject1test.Lion
-import kr.co.lion.androidproject1test.Tiger
-
+import kr.co.lion.androidproject1test.databinding.ActivityShowBinding
 
 class ShowActivity : AppCompatActivity() {
 
@@ -178,3 +169,13 @@ class ShowActivity : AppCompatActivity() {
         setView2()
     }
 }
+
+
+
+
+
+
+
+
+
+

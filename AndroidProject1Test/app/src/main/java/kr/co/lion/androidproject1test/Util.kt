@@ -1,21 +1,24 @@
-package kr.co.lion.android_mini_project_1.Util
+package kr.co.lion.androidproject1test
 
 import android.content.Context
+import android.content.DialogInterface
 import android.os.SystemClock
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import kr.co.lion.androidproject1test.Animal
 import kotlin.concurrent.thread
 
 class Util {
+
     companion object{
 
-        val animalList = arrayListOf<Animal>()
+        // 동물 객체들을 담을 리스트
+        val animalList = mutableListOf<Animal>()
+
 
         // 포커스를 주고 키보드를 올려주는 메서드
-        fun showSoftInput(view: View, context: Context){
+        fun showSoftInput(view:View, context:Context){
             // 포커스를 준다.
             view.requestFocus()
 
@@ -36,26 +39,25 @@ class Util {
         }
 
         // 안내를 위한 다이얼로그를 보여준다.
-        fun showInfoDialog(context: Context, title:String, message:String){
+        fun showInfoDialog(context: Context, title:String, message:String, listener: (DialogInterface, Int) -> Unit){
             val dialogBuilder = MaterialAlertDialogBuilder(context)
             dialogBuilder.setTitle(title)
             dialogBuilder.setMessage(message)
+            dialogBuilder.setPositiveButton("확인", listener)
+            dialogBuilder.show()
         }
     }
-
-
 }
 
-
 // 동물 종류
-enum class AnimalType(num:Int, str:String){
+enum class AnimalType(var num:Int, var str:String){
     ANIMAL_TYPE_LION(0, "사자"),
     ANIMAL_TYPE_TIGER(1, "호랑이"),
     ANIMAL_TYPE_GIRAFFE(2, "기린")
 }
 
 // 사자 성별
-enum class LION_GENDER(num:Int, str:String){
+enum class LION_GENDER(var num:Int, var str:String){
     LION_GENDER1(0, "암컷"),
     LION_GENDER2(1, "숫컷")
 }
@@ -65,5 +67,9 @@ enum class FilterType(var num:Int, var str:String){
     FILTER_TYPE_ALL(0, "전체"),
     FILTER_TYPE_LION(1, "사자"),
     FILTER_TYPE_TIGER(2, "호랑이"),
-    FILTER_TYPE_GIRAFFE(3, "기린")
+    FILTER_TYPE_GIAFFE(3, "기린")
 }
+
+
+
+

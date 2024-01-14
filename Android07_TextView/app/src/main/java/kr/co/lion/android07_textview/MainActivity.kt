@@ -21,6 +21,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
+
+        binding.apply {
+            // TextView의 프로퍼티와 메서드 사용
+            textView.apply {
+                text = "새로운 문자열\n"
+                // 문자열을 추가한다.
+                // \n : 아래로 내린다는 의미의 글자
+
+                append("문자열2\n")
+                append("문자열3\n")
+            }
+        }
     }
 }

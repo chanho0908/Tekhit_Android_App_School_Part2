@@ -1,4 +1,4 @@
-package com.myproject.android01_helloworld
+package kr.co.lion.android01_helloworld
 
 import org.junit.Test
 

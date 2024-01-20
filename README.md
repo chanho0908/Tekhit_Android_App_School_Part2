@@ -8,3 +8,7 @@
 > + [Android TextView](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android07_TextView/app/src/main/java/kr/co/lion/android07_textview/MainActivity.kt)
 > + [Android Button](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android08_Button/app/src/main/java/kr/co/lion/android08_button/MainActivity.kt)
 > + [Android EditText](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android09_EditText/app/src/main/java/kr/co/lion/android09_edittext/MainActivity.kt)
+### 2024/01/19   
+> + [Android_Material3](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android11_Material3/app/src/main/java/kr/co/lion/android11_material3/MainActivity.kt)
+> + [Material3 공식 사이트](https://m3.material.io/)
+> + [Material3_Ex](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Ex06/app/src/main/java/kr/co/lion/ex06/MainActivity.kt)

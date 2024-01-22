@@ -16,13 +16,13 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="체크 확인" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="체크 상태 변경" />
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="체크박스3"
-        app:checkedState="indeterminate" />
+        app:checkedState="unchecked" />
 
     <CheckBox
         android:id="@+id/checkBox4"
@@ -54,7 +54,8 @@
         android:id="@+id/checkBox5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="체크박스5" />
+        android:text="체크박스5"
+        app:checkedState="indeterminate" />
 
     <TextView
         android:id="@+id/textView"

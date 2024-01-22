@@ -31,7 +31,7 @@
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="ElevatedButton" />
 
     <Button
         android:id="@+id/button4"
@@ -48,6 +48,13 @@
         android:layout_height="wrap_content"
         android:text="Filled tonal button"
         app:icon="@drawable/music_note_24px" />
+
+    <Button
+        android:id="@+id/buttonResult"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Outlined Button" />
 
     <com.google.android.material.button.MaterialButtonToggleGroup
         android:id="@+id/toggleGroup1"
@@ -114,10 +121,5 @@
 
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
-    <Button
-        android:id="@+id/buttonResult"
-        style="@style/Widget.Material3.Button.OutlinedButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="buttonResult" />
+
 </LinearLayout>

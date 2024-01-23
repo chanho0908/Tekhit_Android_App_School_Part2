@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="874f319f-e2e1-4794-a704-7f966c978014" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/EX07/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/.idea/deploymentTargetDropDown.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/.idea/kotlinc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/.idea/migrations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/androidTest/java/kr/co/lion/ex07/ExampleInstrumentedTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/java/kr/co/lion/ex07/DataModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/java/kr/co/lion/ex07/MainActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/drawable/ic_launcher_foreground.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/layout/main_item.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/mipmap-hdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/mipmap-mdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/values-night/themes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/values/themes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/xml/backup_rules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/main/res/xml/data_extraction_rules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/app/src/test/java/kr/co/lion/ex07/ExampleUnitTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EX07/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Android20_RecyclerView/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Android20_RecyclerView/.idea/deploymentTargetDropDown.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Android20_RecyclerView/app/src/main/java/kr/co/lion/android20_recyclerview/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Android20_RecyclerView/app/src/main/java/kr/co/lion/android20_recyclerview/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Android20_RecyclerView/app/src/main/res/layout/row.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Android20_RecyclerView/app/src/main/res/layout/row.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ProjectId" id="2bLdiyON90dphITlZGUVUUUuPds" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "last_opened_file_path": "C:/Users/82103/AndroidStudioProjects/TechitAndroid",
+    "settings.editor.selected.configurable": "AndroidSdkUpdater"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="874f319f-e2e1-4794-a704-7f966c978014" name="Changes" comment="" />
+      <created>1705998423445</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1705998423445</updated>
+    </task>
+    <servers />
+  </component>
+</project>

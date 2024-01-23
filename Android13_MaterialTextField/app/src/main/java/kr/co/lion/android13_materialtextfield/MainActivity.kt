@@ -28,26 +28,24 @@ class MainActivity : AppCompatActivity() {
 //
 //4. 주요 리스너
 //- TextWatcher : 키보드 입력을 실시간으로 감지한다.
-//
-//            // error 설정
-//            textField.error = "입력 오류가 발생하였습니다"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
-    activityMainBinding.apply {
+        activityMainBinding.apply {
         // 버튼을 눌렀을 때 입력한 내용을 가져와 출력한다.
         button.setOnClickListener {
             val str1 = textField.text.toString()
             //textView.text = str1
         }
 
-        // error 설정
-        // textField.error = "입력 오류가 발생하였습니다"
-        textInputLayout.isErrorEnabled = true
+        //error 설정
+        //textField.error = "입력 오류가 발생하였습니다" // 에러 메시지
+        textInputLayout.isErrorEnabled = true // 에러 출력
         textInputLayout.error = "입력 오류가 발생하였습니다"
-    }
+        }
     }
 }

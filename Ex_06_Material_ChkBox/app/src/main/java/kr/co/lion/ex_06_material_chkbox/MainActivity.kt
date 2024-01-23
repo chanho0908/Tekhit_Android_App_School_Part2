@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             button.setOnClickListener {
-                textView.text = ""
+                clearTextView()
                 checkBoxList.forEach { checkBox->
                     if (checkBox.isChecked){
                         textView.append("${checkBox.text} \n")
@@ -42,21 +42,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setCheckable(){
-        binding.checkBoxBaseball.isEnabled = true
-        binding.checkBoxSoccer.isEnabled = true
-        binding.checkBoxBasketball.isEnabled = true
+        binding.apply {
+            checkBoxBaseball.isEnabled = true
+            checkBoxSoccer.isEnabled = true
+            checkBoxBasketball.isEnabled = true
+        }
+
     }
 
     fun setUnCheckable(){
+        binding.apply {
+            checkBoxBaseball.isEnabled = false
+            checkBoxBaseball.isChecked = false
 
+            checkBoxSoccer.isEnabled = false
+            checkBoxSoccer.isChecked = false
 
-        binding.checkBoxBaseball.isEnabled = false
-        binding.checkBoxBaseball.isChecked = false
+            checkBoxBasketball.isEnabled = false
+            checkBoxBasketball.isChecked = false
 
-        binding.checkBoxSoccer.isEnabled = false
-        binding.checkBoxSoccer.isChecked = false
+            clearTextView()
+        }
+    }
 
-        binding.checkBoxBasketball.isEnabled = false
-        binding.checkBoxBasketball.isChecked = false
+    fun clearTextView() {
+        binding.textView.text = ""
     }
 }

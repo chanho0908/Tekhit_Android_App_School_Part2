@@ -21,3 +21,6 @@
 > + [Android RadioButton](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android16_Radio/app/src/main/java/kr/co/lion/android16_radio/MainActivity.kt)
 > + [Android Switch](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android18_Switch/app/src/main/java/kr/co/lion/android18_switch/MainActivity.kt)
 > + [Android CheckBox](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/android17_checkbox/app/src/main/java/kr/co/lion/android17_checkbox/MainActivity.kt)
+### 2024/01/23   
+> + [Android Progress & Slide](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android19_Progress/app/src/main/java/kr/co/lion/android19_progress/MainActivity.kt)
+> + [Android RecyclerView](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android20_RecyclerView/app/src/main/java/kr/co/lion/android20_recyclerview/MainActivity.kt)

@@ -10,6 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import kr.co.lion.ex07.databinding.ActivityMainBinding
 import kr.co.lion.ex07.databinding.MainItemBinding
 
+// notifyDataSetChange() : 리스트의 데이터가 변하게 되면 호출하여 리사이클러뷰를 갱신
+// notifyDataSetChange() 를 호출하게 되면 리스트의 모든 데이터를
+// 다시 처음부터 새로운 객체를 생성 하여 랜더링 하기 때문에 비용이 크게 발생한다.
+// DiffUtil은 이전 데이터와 현재 데이터 목록의 차이를 계산하여
+// 업데이트 해야할 데이터에 대해서만 갱신
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     val infoList = ArrayList<DataModel>()
@@ -50,7 +55,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun getItemCount(): Int{
-            Log.d("sadasdsa", infoList.size.toString())
             return infoList.size
         }
 
@@ -63,9 +67,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         fun submitList(newList: ArrayList<DataModel>){
+
+            // 콜백 클래스 (DiffUtilCallback)를 전달하여 업데이트가 필요한 리스트를 확인
             val diffResult = DiffUtil.calculateDiff(DiffUtilCallback(infoList, newList))
+            // 기존 리스트를 clear
             infoList.clear()
+            // 한 컬렉션의 모든 요소를 다른 컬렉션에 추가
             infoList.addAll(newList)
+            // 부분적으로 업데이트를 실행
             diffResult.dispatchUpdatesTo(this)
         }
     }

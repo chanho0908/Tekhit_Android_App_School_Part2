@@ -24,3 +24,7 @@
 ### 2024/01/23   
 > + [Android Progress & Slide](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android19_Progress/app/src/main/java/kr/co/lion/android19_progress/MainActivity.kt)
 > + [Android RecyclerView](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android20_RecyclerView/app/src/main/java/kr/co/lion/android20_recyclerview/MainActivity.kt)
+> + [Android Permission](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android24_Permission/app/src/main/java/kr/co/lion/android24_permission/MainActivity.kt)
+### 2024/01/24
+> + [Android_ActivityLifeCycle ](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android25_Activity_lifeCycle/app/src/main/java/kr/co/lion/android25_activity_lifecycle/MainActivity.kt)
+> + [Android startactivity](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android26_StartActivity/app/src/main/java/kr/co/lion/android26_startactivity/MainActivity.kt)

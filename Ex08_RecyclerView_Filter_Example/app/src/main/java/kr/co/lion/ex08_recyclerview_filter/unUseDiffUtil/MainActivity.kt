@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         nameList.forEach { name ->
 
             // 6. 검색어와 같은 이름이 있다면
-            if (name.contains(searchText)) {
+            if (name.contains(searchText, ignoreCase = true)) {
 
                 // 7. 검색어 리스트에 저장
                 searchList.add(name)

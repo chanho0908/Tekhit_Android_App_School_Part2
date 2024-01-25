@@ -22,6 +22,7 @@ class MainViewAdapter(var dataList: ArrayList<String>): RecyclerView.Adapter<Mai
     // 9. RecyclerView에 전달되는 리스트를
     // 모든 이름을 담은 리스트 < -> 검색어를 담은 리스트
     // 로 변환하는 함수
+    //searchList
     fun changeRvList(newList: ArrayList<String>){
         // 10. 전달 받은 리스트에 따라 기존 리스트를 변경
         dataList = newList

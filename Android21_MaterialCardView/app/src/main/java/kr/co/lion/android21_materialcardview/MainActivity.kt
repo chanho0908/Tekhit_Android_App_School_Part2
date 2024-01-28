@@ -6,8 +6,8 @@ import android.os.Bundle
 // 화면에 배치되는 뷰들을 카드라는 것으로 묶어서 표현할 수 있다.
 // style
 // Outlined : 기본
-// Filled
-// Elevated
+// Filled : 내부를 색상으로 채움
+// Elevated 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

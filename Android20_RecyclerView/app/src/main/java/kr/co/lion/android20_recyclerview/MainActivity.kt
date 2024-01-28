@@ -22,17 +22,17 @@ class MainActivity : AppCompatActivity() {
     val imageRes = arrayOf(
         R.drawable.imgflag1, R.drawable.imgflag2, R.drawable.imgflag3,
         R.drawable.imgflag4, R.drawable.imgflag5, R.drawable.imgflag6,
-        R.drawable.imgflag7, R.drawable.imgflag8
+        R.drawable.imgflag7
     )
 
     // 문자열1
     val textData1 = arrayOf(
-        "토고", "프랑스", "스위스", "스페인", "일본", "독일", "브라질", "대한민국"
+        "토고", "프랑스", "스위스", "스페인", "일본", "독일", "브라질"
     )
 
     // 문자열2
     val textData2 = arrayOf(
-        "탈락", "진출", "탈락", "진출", "탈락", "진출", "진출", "진출"
+        "탈락", "진출", "탈락", "진출", "탈락", "진출", "진출"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

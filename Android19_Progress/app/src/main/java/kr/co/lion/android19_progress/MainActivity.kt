@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             button.setOnClickListener {
                 // progressIndicator의 값을 설정한다.
                 //progressBar.progress += 10
-                progressBar.setProgress(progressBar.progress + 10, true)
+                progressBar.setProgress(progressBar.progress + 30, true)
             }
 
             button2.setOnClickListener {

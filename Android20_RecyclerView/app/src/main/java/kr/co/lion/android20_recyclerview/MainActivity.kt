@@ -85,6 +85,20 @@ class MainActivity : AppCompatActivity() {
 
     // 3. adapter 클래를 Adapter 를 상속받게 구현해준다.
     // 필요한 메서드들을 구현해준다.
+
+    // 라사이클러뷰를 만들 때 개발자가 생각해야 하는 3가지 요소
+    //1. 항목의 개수
+    //2. 항목 하나를 어떠한 모습을 어떻게 보여 줄 것인지
+    //3. 어떠한 데이터를 보여줄 것 인가 보여줄 데이터
+    //
+    // 이세가지를 RecyclerView를 상속하여 구현할 수 있다.
+    //
+    // getImtemCount : 보여줄 항목이 몇 개인가
+    //
+    // oncreateViewholer : 어떠한 모습으로 보여줄것인가
+    //
+    // onBindViewHolder : 어떤 데이터를 보여줄것인가
+
     inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolderClass>(){
 
         // ViewHolder

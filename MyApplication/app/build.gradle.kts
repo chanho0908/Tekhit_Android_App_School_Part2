@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "kr.co.lion.android24_permission"
+    namespace = "kr.co.lion.myapplication"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "kr.co.lion.android24_permission"
+        applicationId = "kr.co.lion.myapplication"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -16,11 +16,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
-    buildFeatures{
-        viewBinding = true
-    }
-
 
     buildTypes {
         release {

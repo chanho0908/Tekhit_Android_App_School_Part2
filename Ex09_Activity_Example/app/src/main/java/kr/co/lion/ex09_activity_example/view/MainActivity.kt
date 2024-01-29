@@ -40,22 +40,6 @@ class MainActivity : AppCompatActivity(){
         }
     }
 
-    val buttonClickListener = View.OnClickListener { v ->
-        when (v.id) {
-            R.id.studentInfoBtn -> {
-                Log.d("sdsaddsd", "클릭")
-                launcher.launch(Intent(this, SecActivity::class.java))
-            }
-
-            R.id.scoreBtn -> {
-                val intent = Intent(this, ThirdActivity::class.java)
-                val calcResult = calculateScore()
-                intent.putIntegerArrayListExtra("calcResult", calcResult)
-                startActivity(intent)
-            }
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -64,8 +48,28 @@ class MainActivity : AppCompatActivity(){
         setRecyclerView()
 
         binding.apply {
-            studentInfoBtn.setOnClickListener(buttonClickListener)
-            scoreBtn.setOnClickListener(buttonClickListener)
+
+            toolbar.apply {
+                inflateMenu(R.menu.main_menu)
+
+                setOnMenuItemClickListener { item->
+                    when(item.itemId){
+                        R.id.input ->{
+                            launcher.launch(Intent(this@MainActivity, SecActivity::class.java))
+                            true
+                        }
+                        R.id.calc -> {
+                            val intent = Intent(this@MainActivity, ThirdActivity::class.java)
+                            val calcResult = calculateScore()
+                            intent.putIntegerArrayListExtra("calcResult", calcResult)
+                            startActivity(intent)
+                            true
+                        }
+
+                        else -> { false }
+                    }
+                }
+            }
         }
     }
 

@@ -14,23 +14,26 @@ class SecActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.apply {
-            button.setOnClickListener {
-                val studentName = studentName.text.toString()
-                val studentGrade = studentGrade.text.toString()
-                val studentKor = kor.text.toString()
-                val studentEng = eng.text.toString()
-                val studentMath = math.text.toString()
+            materialToolbar.apply {
+                setNavigationIcon(R.drawable.arrow_back_24px)
+                setNavigationOnClickListener {
+                    val studentName = studentName.text.toString()
+                    val studentGrade = studentGrade.text.toString()
+                    val studentKor = kor.text.toString()
+                    val studentEng = eng.text.toString()
+                    val studentMath = math.text.toString()
 
-                val intent = Intent()
-                intent.putExtra("studentName", studentName)
-                intent.putExtra("studentGrade", studentGrade)
-                intent.putExtra("studentKor", studentKor)
-                intent.putExtra("studentEng", studentEng)
-                intent.putExtra("studentMath", studentMath)
+                    val intent = Intent()
+                    intent.putExtra("studentName", studentName)
+                    intent.putExtra("studentGrade", studentGrade)
+                    intent.putExtra("studentKor", studentKor)
+                    intent.putExtra("studentEng", studentEng)
+                    intent.putExtra("studentMath", studentMath)
 
-                setResult(RESULT_OK, intent)
+                    setResult(RESULT_OK, intent)
 
-                finish()
+                    finish()
+                }
             }
         }
     }

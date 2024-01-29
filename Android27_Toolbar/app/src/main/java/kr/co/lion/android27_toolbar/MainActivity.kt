@@ -1,5 +1,6 @@
 package kr.co.lion.android27_toolbar
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -36,6 +37,10 @@ class MainActivity : AppCompatActivity() {
 
                     true
                 }
+            }
+
+            button.setOnClickListener {
+                startActivity(Intent(this@MainActivity, SecondActivity::class.java))
             }
         }
 

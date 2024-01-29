@@ -29,7 +29,15 @@ class ThirdActivity : AppCompatActivity() {
             textView.append("전체 총점 : ${calcList?.get(6)} \n")
             textView.append("전체 평균 : ${calcList?.get(7)} ")
 
-            button.setOnClickListener { finish() }
+            materialToolbar.apply {
+                setNavigationIcon(R.drawable.arrow_back_24px)
+
+                setNavigationOnClickListener {
+
+                    finish()
+                }
+            }
+
         }
 
     }

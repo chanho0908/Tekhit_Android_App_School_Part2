@@ -32,7 +32,15 @@ class FourthActivity : AppCompatActivity() {
             scoreSum.text = sum.toString()
             scoreAvg.text = avg.toString()
 
-            button.setOnClickListener { finish() }
+            materialToolbar.apply {
+                setNavigationIcon(R.drawable.arrow_back_24px)
+
+                setNavigationOnClickListener {
+
+                    finish()
+                }
+            }
+
         }
     }
 }

@@ -4,13 +4,13 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-open class Animal(val name: String?, val age: Int): Parcelable
+open class Animal(var name: String?, var age: Int): Parcelable
 
-class Lion(name: String, age: Int, val hairCnt:Int, val gender: String)
+class Lion(name: String, age: Int, var hairCnt:Int, var gender: String)
     : Animal(name, age)
 
-class Tiger(name: String, age: Int, val stripeCount: Int, val weight: Double)
+class Tiger(name: String, age: Int, var stripeCount: Int, var weight: Int)
     : Animal(name, age)
 
-class Giraffe(name: String, age: Int, val neckLength: Double, val runningSpeed: Double)
+class Giraffe(name: String, age: Int, var neckLength: Int, var runningSpeed: Int)
     : Animal(name, age)

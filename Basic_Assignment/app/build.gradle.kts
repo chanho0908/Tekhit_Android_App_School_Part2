@@ -4,11 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "kr.co.lion.ex10_project3"
+    namespace = "kr.co.lion.basic_assignment"
     compileSdk = 34
-
+    buildFeatures{
+        viewBinding = true
+    }
     defaultConfig {
-        applicationId = "kr.co.lion.ex10_project3"
+        applicationId = "kr.co.lion.basic_assignment"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -32,10 +34,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
-    }
-
-    buildFeatures{
-        viewBinding = true
     }
 }
 

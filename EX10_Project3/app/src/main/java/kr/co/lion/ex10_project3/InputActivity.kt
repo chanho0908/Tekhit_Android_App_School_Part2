@@ -1,60 +1,32 @@
-package kr.co.lion.ex10_project2
+package kr.co.lion.ex10_project3
 
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.SystemClock
 import android.view.inputmethod.InputMethodManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
-import kr.co.lion.ex10_project2.databinding.ActivityInputBinding
-import kotlin.concurrent.thread
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kr.co.lion.ex10_project3.databinding.ActivityInputBinding
 
 class InputActivity : AppCompatActivity() {
-
-    lateinit var activityInputBinding:ActivityInputBinding
-
+    lateinit var binding: ActivityInputBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        activityInputBinding = ActivityInputBinding.inflate(layoutInflater)
-        setContentView(activityInputBinding.root)
+        binding = ActivityInputBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         setToolbar()
         setView()
     }
 
-    // 툴바
-    fun setToolbar(){
-        activityInputBinding.apply {
-            toolbarInput.apply {
-                // 타이틀
-                title = "학생 정보 입력"
-                // Back
-                setNavigationIcon(R.drawable.arrow_back_24px)
-                setNavigationOnClickListener {
-                    setResult(RESULT_CANCELED)
-                    finish()
-                }
-                // 메뉴
-                inflateMenu(R.menu.menu_input)
-                setOnMenuItemClickListener {
-                    when(it.itemId){
-                        R.id.menu_input_done -> {
-                            processInputDone()
-                        }
-                    }
-                    true
-                }
-            }
-        }
-    }
-
-    // View 설정
     fun setView(){
-        activityInputBinding.apply {
+        binding.apply {
             // 뷰에 포커스를 준다.
             textFieldInputName.requestFocus()
             // 키보드를 올린다.
@@ -71,11 +43,30 @@ class InputActivity : AppCompatActivity() {
         }
     }
 
-    // 입력 완료 처리
-    fun processInputDone(){
-        // Toast.makeText(this@InputActivity, "눌러졌습니다", Toast.LENGTH_SHORT).show()
+    fun setToolbar() {
+        binding.apply {
+            toolbarInput.apply {
 
-        activityInputBinding.apply {
+                setNavigationOnClickListener {
+                    setResult(RESULT_CANCELED)
+                    finish()
+                }
+
+                inflateMenu(R.menu.menu_input)
+                setOnMenuItemClickListener {
+                    when(it.itemId){
+                        R.id.menu_input_done -> {
+                            processInputDone()
+                        }
+                    }
+                    true
+                }
+            }
+        }
+    }
+
+    fun processInputDone(){
+        binding.apply {
             // 사용자가 입력한 내용을 가져온다
             val name = textFieldInputName.text.toString()
             val gradeStr = textFieldInputGrade.text.toString()
@@ -108,48 +99,35 @@ class InputActivity : AppCompatActivity() {
             // 입력받은 정보를 객체에 담아 준다.
             val studentData = StudentData(name, gradeStr.toInt(), korStr.toInt(), engStr.toInt(), mathStr.toInt())
 
-            Snackbar.make(activityInputBinding.root, "등록이 완료되었습니다", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(binding.root, "등록이 완료되었습니다", Snackbar.LENGTH_SHORT).show()
             // 이전으로 돌아간다.
             val resultIntent = Intent()
             resultIntent.putExtra("studentData", studentData)
 
             setResult(RESULT_OK, resultIntent)
             finish()
-
         }
     }
 
-    // 다이얼로그를 보여주는 메서드
     fun showDialog(title:String, message:String, focusView: TextInputEditText){
-        // 다이얼로그를 보여준다.
         val builder = MaterialAlertDialogBuilder(this@InputActivity).apply {
             setTitle(title)
             setMessage(message)
-            setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
+            setPositiveButton("학인"){ dialogInterface: DialogInterface, i: Int ->
                 focusView.setText("")
                 focusView.requestFocus()
                 showSoftInput(focusView)
             }
         }
+
         builder.show()
     }
 
-    // 포커스를 주고 키보드를 올려주는 메서드
-    fun showSoftInput(focusView:TextInputEditText){
-        thread {
-            SystemClock.sleep(1000)
+    fun showSoftInput(focusView: TextInputEditText){
+        CoroutineScope(Dispatchers.IO).launch {
+            delay(1000)
             val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.showSoftInput(focusView, 0)
         }
     }
 }
-
-
-
-
-
-
-
-
-
-

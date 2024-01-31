@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/textview_menu_item1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/face_24px"
+        android:title=" 텍스트뷰의 메뉴1"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/textview_menu_item2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/description_24px"
+        android:title=" 텍스트뷰의 메뉴2"
+        app:showAsAction="always" />
+</menu>

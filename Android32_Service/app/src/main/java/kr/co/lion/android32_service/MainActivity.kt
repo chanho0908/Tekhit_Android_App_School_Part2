@@ -1,4 +1,4 @@
-package kr.co.lion.basic_assignment
+package kr.co.lion.android32_service
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

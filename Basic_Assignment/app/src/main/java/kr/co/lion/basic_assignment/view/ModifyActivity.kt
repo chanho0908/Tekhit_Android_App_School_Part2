@@ -107,7 +107,7 @@ class ModifyActivity : AppCompatActivity() {
 
             val modifyMemo = DailyMemo(title, selectedMemo?.day, content)
             val intent = Intent()
-            Log.d("sdadas", "sendResponse ${modifyMemo?.title}")
+
             intent.putExtra("modifyMemo", modifyMemo)
             setResult(RESULT_OK, intent)
             finish()

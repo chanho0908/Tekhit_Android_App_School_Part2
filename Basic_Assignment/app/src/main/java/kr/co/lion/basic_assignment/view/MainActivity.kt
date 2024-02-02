@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity(), MainRvAdapter.ItemClick {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         initRv()
         initActivityProcess()
         initToolbar()
@@ -73,11 +72,11 @@ class MainActivity : AppCompatActivity(), MainRvAdapter.ItemClick {
                 MODIFY_RESULT_OK ->{
                     if (it.data != null){
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-                            val modifyMemo = it.data?.getParcelableExtra("modifyMemo", DailyMemo::class.java)
-                            modifyMemo(modifyMemo!!)
+                            val modifiedMemo = it.data?.getParcelableExtra("modifiedMemo", DailyMemo::class.java)
+                            modifyMemo(modifiedMemo!!)
                         }else{
-                            val modifyMemo = it.data?.getParcelableExtra<DailyMemo>("modifyMemo")
-                            modifyMemo(modifyMemo!!)
+                            val modifiedMemo = it.data?.getParcelableExtra<DailyMemo>("modifiedMemo")
+                            modifyMemo(modifiedMemo!!)
                         }
                     }
                 }
@@ -88,7 +87,6 @@ class MainActivity : AppCompatActivity(), MainRvAdapter.ItemClick {
         modifyActivityLauncher =  registerForActivityResult(modifyActivityContact){
 
         }
-
     }
 
     private fun addMemo(newMemo: DailyMemo){

@@ -27,7 +27,6 @@ class MainRvAdapter(val memoList: ArrayList<DailyMemo>): RecyclerView.Adapter<Ma
     }
 
     override fun getItemCount(): Int{
-        //Log.d("dsadasdas", "${memoList.size}")
         return memoList.size
     }
 

@@ -7,6 +7,9 @@ android {
     namespace = "kr.co.lion.android32_service"
     compileSdk = 34
 
+    buildFeatures{
+        viewBinding = true
+    }
     defaultConfig {
         applicationId = "kr.co.lion.android32_service"
         minSdk = 24

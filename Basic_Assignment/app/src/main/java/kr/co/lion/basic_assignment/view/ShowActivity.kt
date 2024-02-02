@@ -55,34 +55,28 @@ class ShowActivity : AppCompatActivity() {
                 if (it.data != null){
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
                         modifyMemo = it.data?.getParcelableExtra("modifyMemo", DailyMemo::class.java)
-                        Log.d("sdads", " initActivityProcess ${modifyMemo?.title}")
                         setModifyMemo(modifyMemo!!)
                     }else{
-                        val modifyMemo = it.data?.getParcelableExtra<DailyMemo>("modifyMemo")
+                        modifyMemo = it.data?.getParcelableExtra<DailyMemo>("modifyMemo")
                         setModifyMemo(modifyMemo!!)
                     }
                 }
             }
         }
     }
-    private fun setModifyMemo(modifyMemo: DailyMemo){
-        Log.d("sdads", "initActivityProcess ${modifyMemo?.title}")
+    private fun setModifyMemo(meno: DailyMemo){
         binding.apply {
-            title.setText(modifyMemo.title)
-            content.setText(modifyMemo.content)
+            title.setText(meno.title)
+            content.setText(meno.content)
         }
     }
 
-    fun initToolbar(){
-        Log.d("sdads", "initToolbar ${modifyMemo?.title}")
+    private fun initToolbar(){
         binding.toolbar.apply {
             inflateMenu(R.menu.show_menu)
 
             setNavigationOnClickListener {
-                val currentMemo = modifyMemo
-                Log.d("sdads", "setNavigationOnClickListener ${modifyMemo?.title}")
-                Log.d("sdads", "currentMemo ${currentMemo?.title}")
-                sendResponse(currentMemo!!)
+                sendResponse()
             }
 
             setOnMenuItemClickListener {
@@ -92,14 +86,26 @@ class ShowActivity : AppCompatActivity() {
         }
     }
 
-    private fun sendResponse(memo: DailyMemo){
+    private fun sendResponse(){
+        binding.apply {
+            val modifiedTitle = title.text.toString()
+            val modifiedContent = content.text.toString()
 
-        Log.d("sdads", "sendResponse ${memo?.title}")
-        val intent = Intent()
-        intent.putExtra("modifyMemo", memo)
-        setResult(MODIFY_RESULT_OK, intent)
-        finish()
+            if ((selectedMemo?.title != modifiedTitle) || (selectedMemo?.title != modifiedContent)){
+                val modifiedMemo = DailyMemo(
+                    modifiedTitle,
+                    selectedMemo?.day,
+                    modifiedContent
+                )
 
+                val intent = Intent()
+                intent.putExtra("modifiedMemo", modifiedMemo)
+                setResult(MODIFY_RESULT_OK, intent)
+                finish()
+            }else{
+                finish()
+            }
+        }
     }
 
     private fun requestModify(data: MenuItem){

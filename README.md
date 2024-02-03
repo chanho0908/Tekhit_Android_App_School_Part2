@@ -30,3 +30,11 @@
 > + [Android startactivity](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android26_StartActivity/app/src/main/java/kr/co/lion/android26_startactivity/MainActivity.kt)
 ### 2024/01/29
 > + [Android toolbar](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android27_Toolbar/app/src/main/java/kr/co/lion/android27_toolbar/MainActivity.kt)
+### 2024/01/30
+> + [Android Menu](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android28_Menu/app/src/main/java/kr/co/lion/android28_menu/MainActivity.kt)
+> + [Anroid Message](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android29_Message/app/src/main/java/kr/co/lion/android29_message/MainActivity.kt)
+### 2024/01/31
+> + [Android Thread](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android30_Thread/app/src/main/java/kr/co/lion/android30_thread/MainActivity.kt)
+### 2024/02/01
+> + [Android BroadCast Receiver](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android31_BR/app/src/main/java/kr/co/lion/android31_br/MainActivity.kt)
+> + [Android Service](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android32_Service/app/src/main/java/kr/co/lion/android32_service/TestService.kt)

@@ -29,7 +29,7 @@ class InputMemoActivity : AppCompatActivity() {
         initToolbar()
     }
 
-    fun initView(){
+    private fun initView(){
         binding.apply {
             title.requestFocus()
             showSoftInput(this@InputMemoActivity, title)
@@ -44,7 +44,7 @@ class InputMemoActivity : AppCompatActivity() {
         }
     }
 
-    fun initToolbar() {
+    private fun initToolbar() {
         binding.toolbar.apply {
 
             inflateMenu(R.menu.input_menu)
@@ -93,6 +93,4 @@ class InputMemoActivity : AppCompatActivity() {
         setResult(RESULT_OK, intent)
         finish()
     }
-
-
 }

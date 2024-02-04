@@ -28,7 +28,7 @@ class ModifyActivity : AppCompatActivity() {
         initToolbar()
     }
 
-    fun initView(){
+    private fun initView(){
         binding.apply {
 
             showSoftInput(this@ModifyActivity, title)
@@ -36,7 +36,7 @@ class ModifyActivity : AppCompatActivity() {
             selectedMemo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
                 intent.getParcelableExtra("selectedMemo", DailyMemo::class.java)
             }else{
-                intent.getParcelableExtra<DailyMemo>("selectedMemo")
+                intent.getParcelableExtra("selectedMemo")
             }
 
             title.setText(selectedMemo?.title)
@@ -60,7 +60,7 @@ class ModifyActivity : AppCompatActivity() {
 
     }
 
-    fun initToolbar(){
+    private fun initToolbar(){
         binding.toolbar.apply {
             setNavigationOnClickListener { finish() }
 
@@ -102,7 +102,7 @@ class ModifyActivity : AppCompatActivity() {
         }
     }
 
-    fun sendResponse(title: String, content: String){
+    private fun sendResponse(title: String, content: String){
         binding.apply {
 
             val modifyMemo = DailyMemo(title, selectedMemo?.day, content)

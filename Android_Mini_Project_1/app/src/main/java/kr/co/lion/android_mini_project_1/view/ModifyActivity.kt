@@ -2,12 +2,15 @@ package kr.co.lion.android_mini_project_1.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.view.isVisible
 import kr.co.lion.android_mini_project_1.R
+import kr.co.lion.android_mini_project_1.Util.AnimalType
+import kr.co.lion.android_mini_project_1.Util.LION_GENDER
 import kr.co.lion.android_mini_project_1.Util.Util
 import kr.co.lion.android_mini_project_1.databinding.ActivityModifyBinding
-import kr.co.lion.android_mini_project_1.model.Giraffe
-import kr.co.lion.android_mini_project_1.model.Lion
-import kr.co.lion.android_mini_project_1.model.Tiger
+import kr.co.lion.androidproject1test.Giraffe
+import kr.co.lion.androidproject1test.Lion
+import kr.co.lion.androidproject1test.Tiger
 
 
 class ModifyActivity : AppCompatActivity() {
@@ -123,7 +126,7 @@ class ModifyActivity : AppCompatActivity() {
             // 클래스 타입별로 분기한다.
             // 사자
             if(animal is Lion){
-                animal.hairCnt = textFieldModifyHairCount.text.toString().toInt()
+                animal.hairCount = textFieldModifyHairCount.text.toString().toInt()
                 animal.gender = when(buttonGroupModifyGender.checkedButtonId){
                     R.id.buttonModifyGender1 -> LION_GENDER.LION_GENDER1
                     R.id.buttonModifyGender2 -> LION_GENDER.LION_GENDER2
@@ -132,13 +135,13 @@ class ModifyActivity : AppCompatActivity() {
             }
             // 호랑이
             else if(animal is Tiger){
-                animal.stripeCount = textFieldModifyLineCount.text.toString().toInt()
+                animal.lineCount = textFieldModifyLineCount.text.toString().toInt()
                 animal.weight = sliderModifyWeight.value.toInt()
             }
             // 기린
             else if(animal is Giraffe){
                 animal.neckLength = textFieldModifyNeckLength.text.toString().toInt()
-                animal.runningSpeed = textFieldModifyRunSpeed.text.toString().toInt()
+                animal.runSpeed = textFieldModifyRunSpeed.text.toString().toInt()
             }
         }
     }

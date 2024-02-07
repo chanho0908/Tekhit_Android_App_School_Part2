@@ -1,23 +1,19 @@
 package kr.co.lion.android_mini_project_1.view
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import kr.co.lion.android_mini_project_1.R
 import kr.co.lion.android_mini_project_1.adapter.MainRvAdapter
 import kr.co.lion.android_mini_project_1.databinding.ActivityMainBinding
-import kr.co.lion.android_mini_project_1.databinding.RowMainBinding
-import kr.co.lion.android_mini_project_1.model.Animal
-import kr.co.lion.android_mini_project_1.model.Giraffe
-import kr.co.lion.android_mini_project_1.model.Lion
-import kr.co.lion.android_mini_project_1.model.Tiger
+import kr.co.lion.androidproject1test.Animal
+import kr.co.lion.androidproject1test.Lion
 
 class MainActivity : AppCompatActivity() {
 
@@ -86,6 +82,20 @@ class MainActivity : AppCompatActivity() {
                 addItemDecoration(deco)
             }
         }
+    }
+
+    // 필터 다이얼로그를 띄우는 메서드
+    fun showFilterDialog(){
+        val dialogBuilder = MaterialAlertDialogBuilder(this@MainActivity)
+        dialogBuilder.setTitle("필터 선택")
+
+        // 항목
+        val itemArray = arrayOf("전체", "사자", "호랑이", "기린")
+        dialogBuilder.setItems(itemArray){ dialogInterface: DialogInterface, i: Int ->
+
+        }
+        dialogBuilder.setNegativeButton("취소", null)
+        dialogBuilder.show()
     }
 
     // 이벤트 설정

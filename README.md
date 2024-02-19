@@ -38,3 +38,7 @@
 ### 2024/02/01
 > + [Android BroadCast Receiver](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android31_BR/app/src/main/java/kr/co/lion/android31_br/MainActivity.kt)
 > + [Android Service](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android32_Service/app/src/main/java/kr/co/lion/android32_service/TestService.kt)
+### 2024/02/15
+> + [Android BottomAppBar](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android34_BottomAppBar/app/src/main/java/kr/co/lion/android34_bottomappbar/MainActivity.kt)
+> + [Android36_SQLiteDatabase](https://github.com/chanho0908/Tekhit_Android_App_School_Part2/blob/main/Android36_SQLiteDatabase/app/src/main/java/kr/co/lion/android36_sqlitedatabase/MainActivity.kt)
+

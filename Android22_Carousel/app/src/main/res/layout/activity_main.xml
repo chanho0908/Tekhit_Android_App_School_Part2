@@ -8,17 +8,14 @@
     tools:context=".MainActivity" >
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="196dp">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="196dp" />
 
     <ImageView
-        android:id="@+id/carouselImageView"
-        android:layout_width="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:srcCompat="@mipmap/ic_launcher" />
 
 </LinearLayout>

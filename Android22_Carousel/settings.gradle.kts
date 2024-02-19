@@ -15,4 +15,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "Android22_Carousel"
 include(":app")
- 

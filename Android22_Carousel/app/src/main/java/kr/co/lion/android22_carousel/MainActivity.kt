@@ -1,17 +1,18 @@
 package kr.co.lion.android22_carousel
 
+import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.carousel.CarouselLayoutManager
-import com.google.android.material.carousel.FullScreenCarouselStrategy
 import com.google.android.material.carousel.MultiBrowseCarouselStrategy
 import kr.co.lion.android22_carousel.databinding.ActivityMainBinding
 import kr.co.lion.android22_carousel.databinding.RowBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+
+    lateinit var activityMainBinding: ActivityMainBinding
 
     // ReyclerView 구성을 위한 이미지들
     val imageRes = arrayOf(
@@ -23,39 +24,64 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-        binding.apply {
+        activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(activityMainBinding.root)
+
+        activityMainBinding.apply {
             // RecyclerView 셋팅
-            rv.apply {
+            recyclerView.apply {
                 // 어뎁터
                 adapter = RecyclerViewAdapter()
                 // 레이아웃 매니저
                 //layoutManager = CarouselLayoutManager()
-                //layoutManager = CarouselLayoutManager(MultiBrowseCarouselStrategy())
-                //layoutManager = CarouselLayoutManager(HeroCarouselStrategy())
-
-                layoutManager = CarouselLayoutManager(FullScreenCarouselStrategy())
+                // 아래의 레이아웃 매니저는 보여주고자 하는 이미지의 크기가 모두 똑같을 경우에만 사용하세요
+                layoutManager = CarouselLayoutManager(MultiBrowseCarouselStrategy())
+                // layoutManager = CarouselLayoutManager(HeroCarouselStrategy())
+                // layoutManager = CarouselLayoutManager(FullScreenCarouselStrategy())
             }
         }
     }
 
-    inner class RecyclerViewAdapter: RecyclerView.Adapter<RecyclerViewAdapter.ViewHolderClass>(){
-        inner class ViewHolderClass(val rowBinding: RowBinding): RecyclerView.ViewHolder(binding.root){
+    // RecyclerView Adapter
+    inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolderClass>(){
 
+        inner class ViewHolderClass(rowBinding: RowBinding) : RecyclerView.ViewHolder(rowBinding.root){
+
+            val rowBinding:RowBinding
+
+            init{
+               this.rowBinding = rowBinding
+
+                // 이미지를 눌렀을 때의 처리는 리사이클러 뷰의 항목을 눌렀을 때로 처리해준다.
+                rowBinding.root.setOnClickListener {
+                    activityMainBinding.imageView.setImageResource(imageRes[adapterPosition])
+                }
+            }
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
-            return ViewHolderClass(RowBinding.inflate(layoutInflater))
+            val rowBinding = RowBinding.inflate(layoutInflater)
+            val viewHolderClass = ViewHolderClass(rowBinding)
+            return viewHolderClass
         }
 
-        override fun getItemCount() = imageRes.size
+        override fun getItemCount(): Int {
+            return imageRes.size
+        }
 
         override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
             holder.rowBinding.carouselImageView.setImageResource(imageRes[position])
         }
-
-
     }
 }
+
+
+
+
+
+
+
+
+
+

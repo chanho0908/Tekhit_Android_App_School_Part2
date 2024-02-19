@@ -15,7 +15,6 @@ import kr.co.lion.ex12_sqlitedatabase1.databinding.RowMainBinding
 // Model 클래스 : 데이터를 담아두는 클래스들
 // Dao 클래스 : 데이터베이스에 관련된 작업을 담아두는 클래스들
 
-
 class MainActivity : AppCompatActivity() {
 
     lateinit var activityMainBinding: ActivityMainBinding
@@ -24,6 +23,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var inputActivityLauncher: ActivityResultLauncher<Intent>
     // ShowInfoActivity의 런처
     lateinit var showInfoActivityLauncher: ActivityResultLauncher<Intent>
+
+    // 학생 객체를 담을 리스트
+    lateinit var studentList:MutableList<StudentModel>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +43,9 @@ class MainActivity : AppCompatActivity() {
         // InputActivity 런처
         val contract1 = ActivityResultContracts.StartActivityForResult()
         inputActivityLauncher = registerForActivityResult(contract1){
-
+            // 저장된 데이터를 가져온다.
+            studentList = StudentDao.selectAllStudent(this@MainActivity)
+            activityMainBinding.recyclerViewMain.adapter?.notifyDataSetChanged()
         }
 
         // ShowInfoActivity 런처
@@ -81,6 +85,8 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding.apply {
             // ReyclerView
             recyclerViewMain.apply {
+                // RecyclerView 구성을 위한 리스트
+                studentList = StudentDao.selectAllStudent(this@MainActivity)
                 // 어뎁터 설정
                 adapter = RecyclerViewMainAdapter()
                 // 레이아웃 매니저
@@ -119,7 +125,11 @@ class MainActivity : AppCompatActivity() {
                     menuInflater.inflate(R.menu.menu_main_row, menu)
                     // 메뉴 항목을 눌렀을 때
                     menu?.findItem(R.id.menu_main_row_item_delete)?.setOnMenuItemClickListener {
-
+                        // 선택한 학생의 정보를 삭제한다.
+                        StudentDao.deleteStudent(this@MainActivity, studentList[adapterPosition].idx)
+                        // 데이터를 다시 받아온다.
+                        studentList = StudentDao.selectAllStudent(this@MainActivity)
+                        activityMainBinding.recyclerViewMain.adapter?.notifyDataSetChanged()
                         true
                     }
                 }
@@ -134,12 +144,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun getItemCount(): Int {
-            return 100
+            return studentList.size
         }
 
         override fun onBindViewHolder(holder: ViewHolderMain, position: Int) {
-            holder.rowMainBinding.textViewRowMainName.text = "이름 $position"
-            holder.rowMainBinding.textViewRowMainGrade.text = "$position 학년"
+//            holder.rowMainBinding.textViewRowMainName.text = "이름 $position"
+//            holder.rowMainBinding.textViewRowMainGrade.text = "$position 학년"
+            // position 번째 객체를 추출한다.
+
+            holder.rowMainBinding.textViewRowMainName.text = studentList[position].name
+            holder.rowMainBinding.textViewRowMainGrade.text = "${studentList[position].grade}학년"
         }
     }
 }

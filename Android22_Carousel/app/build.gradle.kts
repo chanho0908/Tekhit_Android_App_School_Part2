@@ -7,10 +7,6 @@ android {
     namespace = "kr.co.lion.android22_carousel"
     compileSdk = 34
 
-    buildFeatures{
-        viewBinding = true
-    }
-
     defaultConfig {
         applicationId = "kr.co.lion.android22_carousel"
         minSdk = 24
@@ -36,6 +32,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    buildFeatures{
+        viewBinding = true
     }
 }
 

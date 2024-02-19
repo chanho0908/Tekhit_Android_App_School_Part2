@@ -4,7 +4,6 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kr.co.lion.ex12_sqlitedatabase1.databinding.ActivityShowInfoBinding
-
 class ShowInfoActivity : AppCompatActivity() {
 
     lateinit var activityShowInfoBinding: ActivityShowInfoBinding
@@ -41,16 +40,25 @@ class ShowInfoActivity : AppCompatActivity() {
             // TextView
             textViewShowInfoReport.apply {
 
-                text = "이름 : 홍길동\n"
-                append("학년 : 1학년\n")
+                // 학생 번호를 추출한다.
+                val idx = intent.getIntExtra("idx", 0)
+                // 데이터베이스에서 읽어온다.
+                val studentModel = StudentDao.selectOneStudent(this@ShowInfoActivity, idx)
+
+
+                text = "이름 : ${studentModel.name}\n"
+                append("학년 : ${studentModel.grade}학년\n")
                 append("\n")
-                append("국어 점수 : 100점\n")
-                append("영어 점수 : 100점\n")
-                append("수학 점수 : 100점\n")
+                append("국어 점수 : ${studentModel.kor}점\n")
+                append("영어 점수 : ${studentModel.eng}점\n")
+                append("수학 점수 : ${studentModel.math}점\n")
                 append("\n")
 
-                append("총점 : 300점\n")
-                append("평균 : 100점")
+                val total = studentModel.kor + studentModel.eng + studentModel.math
+                val avg = total / 3
+
+                append("총점 : ${total}점\n")
+                append("평균 : ${avg}점")
             }
         }
     }

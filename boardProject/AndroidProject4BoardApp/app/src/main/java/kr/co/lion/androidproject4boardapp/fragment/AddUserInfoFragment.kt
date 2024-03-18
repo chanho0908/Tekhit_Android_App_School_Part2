@@ -2,18 +2,25 @@ package kr.co.lion.androidproject4boardapp.fragment
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kr.co.lion.androidproject4boardapp.Gender
 import kr.co.lion.androidproject4boardapp.MainActivity
 import kr.co.lion.androidproject4boardapp.MainFragmentName
 import kr.co.lion.androidproject4boardapp.R
 import kr.co.lion.androidproject4boardapp.Tools
+import kr.co.lion.androidproject4boardapp.UserState
+import kr.co.lion.androidproject4boardapp.dao.UserDao
 import kr.co.lion.androidproject4boardapp.databinding.FragmentAddUserInfoBinding
+import kr.co.lion.androidproject4boardapp.model.UserModel
 import kr.co.lion.androidproject4boardapp.viewmodel.AddUserInfoViewModel
 
 class AddUserInfoFragment : Fragment() {
@@ -67,14 +74,17 @@ class AddUserInfoFragment : Fragment() {
 
                     // 모든 유효성 검사에 통과를 했다면..
                     if(chk == true) {
-                        val materialAlertDialogBuilder = MaterialAlertDialogBuilder(mainActivity)
-                        materialAlertDialogBuilder.setTitle("가입완료")
-                        materialAlertDialogBuilder.setMessage("가입이 완료되었습니다\n로그인해주세요")
-                        materialAlertDialogBuilder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
-                            mainActivity.removeFragment(MainFragmentName.ADD_USER_INFO_FRAGMENT)
-                            mainActivity.removeFragment(MainFragmentName.JOIN_FRAGMENT)
-                        }
-                        materialAlertDialogBuilder.show()
+                        // 사용자 정보를 저장한다.
+                        saveUserData()
+
+//                        val materialAlertDialogBuilder = MaterialAlertDialogBuilder(mainActivity)
+//                        materialAlertDialogBuilder.setTitle("가입완료")
+//                        materialAlertDialogBuilder.setMessage("가입이 완료되었습니다\n로그인해주세요")
+//                        materialAlertDialogBuilder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
+//                            mainActivity.removeFragment(MainFragmentName.ADD_USER_INFO_FRAGMENT)
+//                            mainActivity.removeFragment(MainFragmentName.JOIN_FRAGMENT)
+//                        }
+//                        materialAlertDialogBuilder.show()
                     }
                 }
             }
@@ -123,6 +133,48 @@ class AddUserInfoFragment : Fragment() {
         }
 
         return true
+    }
+
+    // 데이터를 저장하고 이동한다.
+    fun saveUserData(){
+        CoroutineScope(Dispatchers.Main).launch {
+            // 사용자 번호 시퀀스 값을 가져온다.
+            val userSequence = UserDao.getUserSequence()
+            // Log.d("test1234", "UserSequence : $userSequence")
+            // 시퀀스값을 1 증가시켜 덮어씌워준다.
+            UserDao.updateUserSequence(userSequence + 1)
+
+            // 저장할 데이터를 가져온다.
+            val userIdx = userSequence + 1
+            val userId = arguments?.getString("joinUserId")!!
+            val userPw = arguments?.getString("joinUserPw")!!
+            val userNickName = addUserInfoViewModel.textFieldAddUserInfoNickName.value!!
+            val userAge = addUserInfoViewModel.textFieldAddUserInfoAge.value!!.toInt()
+            val userGender = addUserInfoViewModel.gettingGender().num
+            val userHobby1 = addUserInfoViewModel.checkBoxAddUserInfoHobby1.value!!
+            val userHobby2 = addUserInfoViewModel.checkBoxAddUserInfoHobby2.value!!
+            val userHobby3 = addUserInfoViewModel.checkBoxAddUserInfoHobby3.value!!
+            val userHobby4 = addUserInfoViewModel.checkBoxAddUserInfoHobby4.value!!
+            val userHobby5 = addUserInfoViewModel.checkBoxAddUserInfoHobby5.value!!
+            val userHobby6 = addUserInfoViewModel.checkBoxAddUserInfoHobby6.value!!
+            val userState = UserState.USER_STATE_NORMAL.num
+
+            // 저장할 데이터를 객체에 담는다.
+            val userModel = UserModel(userIdx, userId, userPw, userNickName, userAge, userGender,
+                userHobby1, userHobby2, userHobby3, userHobby4, userHobby5, userHobby6, userState)
+
+            // 사용자 정보를 저장한다.
+            UserDao.insertUserData(userModel)
+
+            val materialAlertDialogBuilder = MaterialAlertDialogBuilder(mainActivity)
+            materialAlertDialogBuilder.setTitle("가입완료")
+            materialAlertDialogBuilder.setMessage("가입이 완료되었습니다\n로그인해주세요")
+            materialAlertDialogBuilder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
+                mainActivity.removeFragment(MainFragmentName.ADD_USER_INFO_FRAGMENT)
+                mainActivity.removeFragment(MainFragmentName.JOIN_FRAGMENT)
+            }
+            materialAlertDialogBuilder.show()
+        }
     }
 }
 

@@ -1,0 +1,22 @@
+package kr.co.lion.androidproject4boardapp
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import kr.co.lion.androidproject4boardapp.databinding.ActivityMainBinding
+
+class MainActivity : AppCompatActivity() {
+
+    lateinit var activityMainBinding: ActivityMainBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // 스플래쉬 스크린이 나타나게 한다.
+        // 반드시 setContentView 전에 해야 한다.
+        installSplashScreen()
+
+        activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(activityMainBinding.root)
+    }
+}

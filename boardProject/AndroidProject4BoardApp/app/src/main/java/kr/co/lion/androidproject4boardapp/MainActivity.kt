@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(activityMainBinding.root)
 
 
-
         // 권한 확인
         requestPermissions(permissionList, 0)
 

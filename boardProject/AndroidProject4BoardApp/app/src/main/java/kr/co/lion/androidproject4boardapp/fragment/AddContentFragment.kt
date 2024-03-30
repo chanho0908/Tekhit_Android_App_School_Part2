@@ -293,7 +293,12 @@ class AddContentFragment : Fragment() {
 
             // ReadContentFragment로 이동한다.
             Tools.hideSoftInput(contentActivity)
-            contentActivity.replaceFragment(ContentFragmentName.READ_CONTENT_FRAGMENT, true, true, null)
+
+            // 글 번호를 담는다.
+            val readBundle = Bundle()
+            readBundle.putInt("contentIdx", contentIdx)
+
+            contentActivity.replaceFragment(ContentFragmentName.READ_CONTENT_FRAGMENT, true, true, readBundle)
         }
     }
 }

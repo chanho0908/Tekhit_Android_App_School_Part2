@@ -23,7 +23,6 @@ import kr.co.lion.androidproject4boardapp.databinding.FragmentLoginBinding
 import kr.co.lion.androidproject4boardapp.model.UserModel
 import kr.co.lion.androidproject4boardapp.viewmodel.LoginViewModel
 
-
 class LoginFragment : Fragment() {
 
     lateinit var fragmentLoginBinding: FragmentLoginBinding

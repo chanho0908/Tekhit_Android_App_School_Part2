@@ -1,16 +1,24 @@
 package kr.co.lion.androidproject4boardapp.fragment
 
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.activity.addCallback
 import androidx.databinding.DataBindingUtil
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kr.co.lion.androidproject4boardapp.ContentActivity
 import kr.co.lion.androidproject4boardapp.ContentFragmentName
+import kr.co.lion.androidproject4boardapp.ContentState
+import kr.co.lion.androidproject4boardapp.ContentType
 import kr.co.lion.androidproject4boardapp.R
+import kr.co.lion.androidproject4boardapp.dao.ContentDao
+import kr.co.lion.androidproject4boardapp.dao.UserDao
 import kr.co.lion.androidproject4boardapp.databinding.FragmentReadContentBinding
 import kr.co.lion.androidproject4boardapp.viewmodel.ReadContentViewModel
 
@@ -21,6 +29,9 @@ class ReadContentFragment : Fragment() {
     lateinit var contentActivity: ContentActivity
 
     lateinit var readContentViewModel: ReadContentViewModel
+
+    // 현재 글 번호를 담을 변수
+    var contentIdx = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -33,9 +44,13 @@ class ReadContentFragment : Fragment() {
 
         contentActivity = activity as ContentActivity
 
+        // 글 번호를 담는다.
+        contentIdx = arguments?.getInt("contentIdx")!!
+
         settingToolbarReadContent()
         settingBackButton()
         settingInputForm()
+
 
         return fragmentReadContentBinding.root
     }
@@ -53,6 +68,12 @@ class ReadContentFragment : Fragment() {
                 }
                 // 메뉴
                 inflateMenu(R.menu.menu_read_content)
+                // 모든 메뉴를 보이지 않는 상태로 둔다.
+                // 글 정보를 가져온 다음 메뉴를 노출 시킨다.
+                menu.findItem(R.id.menuItemReadContentReply).isVisible = false
+                menu.findItem(R.id.menuItemReadContentModify).isVisible = false
+                menu.findItem(R.id.menuItemReadContentDelete).isVisible = false
+
                 setOnMenuItemClickListener {
                     // 메뉴의 id로 분기한다.
                     when(it.itemId){
@@ -68,6 +89,21 @@ class ReadContentFragment : Fragment() {
                         }
                         // 삭제하기
                         R.id.menuItemReadContentDelete -> {
+                            // 삭제 확인을 받기 위한 다이얼로그를 띄워준다.
+                            MaterialAlertDialogBuilder(contentActivity).apply {
+                                setTitle("삭제하기")
+                                setMessage("삭제하면 복원할 수 없습니다")
+                                setNegativeButton("취소", null)
+                                setPositiveButton("삭제"){ dialogInterface: DialogInterface, i: Int ->
+                                    CoroutineScope(Dispatchers.Main).launch {
+                                        // 글 상태를 삭제 상태로 변경한다.
+                                        ContentDao.updateContentState(contentIdx, ContentState.COTTENT_STATE_REMOVE)
+                                        // 글 목록 화면으로 돌아간다.
+                                        backProcesss()
+                                    }
+                                }
+                                show()
+                            }
 
                         }
                     }
@@ -101,10 +137,54 @@ class ReadContentFragment : Fragment() {
 
     // 입력 요소에 값을 넣어준다.
     fun settingInputForm(){
-        readContentViewModel.textFieldReadContentSubject.value = "제목입니다"
-        readContentViewModel.textFieldReadContentType.value = "자유게시판"
-        readContentViewModel.textFieldReadContentNickName.value = "홍길동"
-        readContentViewModel.textFieldReadContentDate.value = "2024-03-12"
-        readContentViewModel.textFieldReadContentText.value ="내용입니다"
+
+        // 이미지뷰를 안보이게 한다.
+        fragmentReadContentBinding.imageViewReadContent.visibility = View.INVISIBLE
+        // 입력 요소에 띄어쓰기를 넣어준다.
+        readContentViewModel.textFieldReadContentSubject.value = " "
+        readContentViewModel.textFieldReadContentText.value = " "
+        readContentViewModel.textFieldReadContentDate.value = " "
+        readContentViewModel.textFieldReadContentType.value = " "
+        readContentViewModel.textFieldReadContentNickName.value = " "
+
+
+        CoroutineScope(Dispatchers.Main).launch {
+
+            // 현재 글 번호에 해당하는 글 데이터를 가져온다.
+            val contentModel = ContentDao.selectContentData(contentIdx)
+
+            // 로그인한 사용자가 글을 작성한 사용자와 같다면 수정과 삭제 메뉴를 보여준다.
+            if(contentActivity.loginUserIdx == contentModel?.contentWriterIdx){
+                fragmentReadContentBinding.toolbarReadContent.menu.findItem(R.id.menuItemReadContentModify).isVisible = true
+                fragmentReadContentBinding.toolbarReadContent.menu.findItem(R.id.menuItemReadContentDelete).isVisible = true
+            }
+            // 다르다면
+            else {
+                fragmentReadContentBinding.toolbarReadContent.menu.findItem(R.id.menuItemReadContentReply).isVisible = true
+            }
+
+            // 글을 작성한 사용자의 번호를 통해 사용자 정보를 가져온다.
+            val userModel = UserDao.gettingUserInfoByUserIdx(contentModel?.contentWriterIdx!!)
+
+            // 가져온 데이터를 보여준다.
+            readContentViewModel.textFieldReadContentSubject.value = contentModel?.contentSubject
+
+            readContentViewModel.textFieldReadContentType.value = when(contentModel?.contentType){
+                ContentType.TYPE_FREE.number -> ContentType.TYPE_FREE.str
+                ContentType.TYPE_HUMOR.number -> ContentType.TYPE_HUMOR.str
+                ContentType.TYPE_SOCIETY.number -> ContentType.TYPE_SOCIETY.str
+                ContentType.TYPE_SPORTS.number -> ContentType.TYPE_SPORTS.str
+                else -> ""
+            }
+
+            readContentViewModel.textFieldReadContentNickName.value = userModel?.userNickName
+            readContentViewModel.textFieldReadContentDate.value = contentModel?.contentWriteDate
+            readContentViewModel.textFieldReadContentText.value = contentModel?.contentText
+
+            // 이미지 데이터를 불러온다.
+            if(contentModel?.contentImage != null) {
+                ContentDao.gettingContentImage(contentActivity, contentModel.contentImage!!, fragmentReadContentBinding.imageViewReadContent)
+            }
+        }
     }
 }

@@ -39,7 +39,12 @@ class ContentActivity : AppCompatActivity() {
         settingNavigationView()
 
         // MainFragment가 나타나도록 한다.
-        replaceFragment(ContentFragmentName.MAIN_FRAGMENT, false, false, null)
+        val mainBundle = Bundle()
+        // 게시판 종류를 담는다.
+        mainBundle.putString("TypeName", ContentType.TYPE_ALL.str)
+        mainBundle.putInt("TypeNumber", ContentType.TYPE_ALL.number)
+
+        replaceFragment(ContentFragmentName.MAIN_FRAGMENT, false, false, mainBundle)
     }
     
     // 네비게이션 뷰 설정
@@ -64,26 +69,56 @@ class ContentActivity : AppCompatActivity() {
                     when(it.itemId){
                         // 전체 게시판
                         R.id.menuItemContentNavigationAll -> {
+                            val mainBundle = Bundle()
+                            // 게시판 종류를 담는다.
+                            mainBundle.putString("TypeName", ContentType.TYPE_ALL.str)
+                            mainBundle.putInt("TypeNumber", ContentType.TYPE_ALL.number)
+
+                            replaceFragment(ContentFragmentName.MAIN_FRAGMENT, false, false, mainBundle)
                             // NavigationView를 닫아준다.
                             drawerLayoutContent.close()
                         }
                         // 자유 게시판
                         R.id.menuItemContentNavigation1 -> {
+                            val mainBundle = Bundle()
+                            // 게시판 종류를 담는다.
+                            mainBundle.putString("TypeName", ContentType.TYPE_FREE.str)
+                            mainBundle.putInt("TypeNumber", ContentType.TYPE_FREE.number)
+
+                            replaceFragment(ContentFragmentName.MAIN_FRAGMENT, false, false, mainBundle)
                             // NavigationView를 닫아준다.
                             drawerLayoutContent.close()
                         }
                         // 유머 게시판
                         R.id.menuItemContentNavigation2 -> {
+                            val mainBundle = Bundle()
+                            // 게시판 종류를 담는다.
+                            mainBundle.putString("TypeName", ContentType.TYPE_HUMOR.str)
+                            mainBundle.putInt("TypeNumber", ContentType.TYPE_HUMOR.number)
+
+                            replaceFragment(ContentFragmentName.MAIN_FRAGMENT, false, false, mainBundle)
                             // NavigationView를 닫아준다.
                             drawerLayoutContent.close()
                         }
                         // 시사 게시판
                         R.id.menuItemContentNavigation3 -> {
+                            val mainBundle = Bundle()
+                            // 게시판 종류를 담는다.
+                            mainBundle.putString("TypeName", ContentType.TYPE_SOCIETY.str)
+                            mainBundle.putInt("TypeNumber", ContentType.TYPE_SOCIETY.number)
+
+                            replaceFragment(ContentFragmentName.MAIN_FRAGMENT, false, false, mainBundle)
                             // NavigationView를 닫아준다.
                             drawerLayoutContent.close()
                         }
                         // 스포츠 게시판
                         R.id.menuItemContentNavigation4 -> {
+                            val mainBundle = Bundle()
+                            // 게시판 종류를 담는다.
+                            mainBundle.putString("TypeName", ContentType.TYPE_SPORTS.str)
+                            mainBundle.putInt("TypeNumber", ContentType.TYPE_SPORTS.number)
+
+                            replaceFragment(ContentFragmentName.MAIN_FRAGMENT, false, false, mainBundle)
                             // NavigationView를 닫아준다.
                             drawerLayoutContent.close()
                         }
